@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Choreography Generator</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 { font-size: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
+
+        .input-group { margin-bottom: 1rem; }
+
+        label { display: block; font-size: 0.875rem; margin-bottom: 0.5rem; font-weight: 600; }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+
+        button:hover { background-color: #4f46e5; }
+
+        #result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+            display: none;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AI Choreography Generator</h1>
+    
+    <div class="input-group">
+        <label>춤 장르</label>
+        <input type="text" id="genre" placeholder="예: 힙합, 발레">
+    </div>
+    <div class="input-group">
+        <label>분위기</label>
+        <input type="text" id="mood" placeholder="예: 강렬한, 부드러운">
+    </div>
+    <div class="input-group">
+        <label>음악 스타일</label>
+        <input type="text" id="style" placeholder="예: 빠른 비트, 잔잔한 피아노">
+    </div>
+    
+    <button onclick="generateChoreo()">안무 컨셉 생성하기</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function generateChoreo() {
+        const genre = document.getElementById('genre').value;
+        const mood = document.getElementById('mood').value;
+        const style = document.getElementById('style').value;
+        const resultDiv = document.getElementById('result');
+
+        if(!genre || !mood || !style) {
+            alert("모든 항목을 입력해주세요!");
+            return;
+        }
+
+        const concepts = [
+            `당신을 위한 '${genre}' 안무: 전체적으로 ${mood} 흐름을 유지하며, ${style}에 맞춰 절도 있는 포인트 동작을 3번 반복해보세요.`,
+            `이번 '${genre}' 스타일은 ${mood}하게 시작해서 ${style} 구간에서 동작을 크게 확장하는 것이 핵심입니다.`,
+            `추천 안무: ${genre}의 기본 스텝을 ${mood}한 느낌으로 소화하고, ${style} 타이밍에 맞춰 시선을 고정해보세요.`
+        ];
+
+        const randomConcept = concepts[Math.floor(Math.random() * concepts.length)];
+        
+        resultDiv.style.display = 'block';
+        resultDiv.innerText = randomConcept;
+    }
+</script>
+
+</body>
+</html>
